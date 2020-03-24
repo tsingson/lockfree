@@ -80,7 +80,6 @@ func TestRBTreeWithEqual(t *testing.T) {
 	if tree.Get(10) != nil {
 		t.Fatalf("want nil, got %d", tree.Get(10))
 	}
-
 }
 
 func TestRBTreeNoEqual(t *testing.T) {

@@ -113,12 +113,14 @@ func (t *RBTree) insertCase1(n *rbnode) {
 	}
 	t.insertCase2(n)
 }
+
 func (t *RBTree) insertCase2(n *rbnode) {
 	if n.parent.color() == black {
 		return
 	}
 	t.insertCase3(n)
 }
+
 func (t *RBTree) insertCase3(n *rbnode) {
 	if n.uncle().color() == red {
 		n.parent.c = black
@@ -128,8 +130,8 @@ func (t *RBTree) insertCase3(n *rbnode) {
 		return
 	}
 	t.insertCase4(n)
-
 }
+
 func (t *RBTree) insertCase4(n *rbnode) {
 	if n == n.parent.right && n.parent == n.grandparent().left {
 		t.rotateLeft(n.parent)
@@ -140,6 +142,7 @@ func (t *RBTree) insertCase4(n *rbnode) {
 	}
 	t.insertCase5(n)
 }
+
 func (t *RBTree) insertCase5(n *rbnode) {
 	n.parent.c = black
 	n.grandparent().c = red
@@ -176,6 +179,7 @@ func (t *RBTree) rotateLeft(n *rbnode) {
 	right.left = n
 	n.parent = right
 }
+
 func (t *RBTree) rotateRight(n *rbnode) {
 	left := n.left
 	t.replace(n, left)
@@ -253,6 +257,7 @@ func (t *RBTree) delCase1(n *rbnode) {
 
 	t.delCase2(n)
 }
+
 func (t *RBTree) delCase2(n *rbnode) {
 	sibling := n.sibling()
 	if sibling.color() == red {
@@ -266,6 +271,7 @@ func (t *RBTree) delCase2(n *rbnode) {
 	}
 	t.delCase3(n)
 }
+
 func (t *RBTree) delCase3(n *rbnode) {
 	sibling := n.sibling()
 	if n.parent.color() == black &&
@@ -278,6 +284,7 @@ func (t *RBTree) delCase3(n *rbnode) {
 	}
 	t.delCase4(n)
 }
+
 func (t *RBTree) delCase4(n *rbnode) {
 	sibling := n.sibling()
 	if n.parent.color() == red &&
@@ -290,6 +297,7 @@ func (t *RBTree) delCase4(n *rbnode) {
 	}
 	t.delCase5(n)
 }
+
 func (t *RBTree) delCase5(n *rbnode) {
 	sibling := n.sibling()
 	if n == n.parent.left &&
@@ -309,6 +317,7 @@ func (t *RBTree) delCase5(n *rbnode) {
 	}
 	t.delCase6(n)
 }
+
 func (t *RBTree) delCase6(n *rbnode) {
 	sibling := n.sibling()
 	sibling.c = n.parent.color()
